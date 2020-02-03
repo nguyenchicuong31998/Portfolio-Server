@@ -1,0 +1,17 @@
+{
+  "name": "freshfood-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "freshfood-server-dev.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "ini": "^1.3.5",
+    "mongoose": "^5.8.10"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
