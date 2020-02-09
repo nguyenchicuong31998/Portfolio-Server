@@ -1,18 +1,39 @@
 const http = require("http");
 const express = require("express");
+const bodyParser = require("body-parser");
+const routers = require("./route/index.js");
 let app = express();
+let managers = {};
 
 const $ = {};
 
-  
-app.use("/", (req, res, next) => {
-  res.send(`ok ${HOST}`);
+// app.use("/", (req, res, next) => {
+//   res.send(`ok nek baby`);
+// });
+
+
+// app.use(async function(req, res, next) {
+
+//   req.managers =  managers
+
+//   const users = await req.managers.usersManager.getUsers();
+
+//   console.log("vaoo user", users);
+//   next();
+// });
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+app.use(routers);
+app.set('app', function (){
+   return managers;
 });
 
-$.load = async appInstance => {
-  app = appInstance;
 
-  console.log("vaoo", appInstance.ini);
+$.load = async appInstance => {
+
+  managers = appInstance;
 
   const HOST = appInstance.ini.server.host;
   const PORT = process.env.PORT || appInstance.ini.server.port;
@@ -20,9 +41,9 @@ $.load = async appInstance => {
   app.web = appInstance;
 
   return new Promise(function(resolve, reject) {
-
+    
     let server = http.createServer(app);
-    server.listen(PORT, HOST, function(err) {
+    server.listen(PORT, HOST, (err) => {
 
       if(err){
          return reject(err);
@@ -30,11 +51,9 @@ $.load = async appInstance => {
 
       console.log(`Server running... http://${HOST}:${PORT}`);
       resolve(app);
-      
-    });
-  
-  });
 
+    });
+  });
 };
 
 module.exports = $;

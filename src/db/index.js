@@ -1,24 +1,30 @@
 const mongoose = require('mongoose');
 
 const {
-   Users
+  users
 } = require("./schema.js");
 
 const db = {};
 
-db.load = async function (app){
+db.users = mongoose.model("users", users);
+
+db.load = async (app) => {
 
     const url = app.ini.mongodb.url;
-    const name = app.ini.mongodb.name;
+    const dbName = app.ini.mongodb.name;
     return mongoose.connect(url,
       {
         useNewUrlParser: true,  
-        name,
-        autoIndex: app.ini.mongodb.autoIndex
+        dbName,
+        useUnifiedTopology: true,
+        autoIndex: app.ini.mongodb.autoIndex == true
       }
     ).then(async () =>{
        app.db = db;
+       console.log("connect successfully");
        return app;
+    }).catch(async () =>{
+       console.log("connect error");
     })
 }
 
