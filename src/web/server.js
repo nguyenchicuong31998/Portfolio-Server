@@ -2,6 +2,7 @@ const http = require("http");
 const express = require("express");
 const bodyParser = require("body-parser");
 const routers = require("./route/index.js");
+const path = require('path');
 let app = express();
 let managers = {};
 
@@ -21,7 +22,7 @@ const $ = {};
 //   console.log("vaoo user", users);
 //   next();
 // });
-
+app.use('/public',express.static(path.join(__dirname + '../../../assets')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 

@@ -1,12 +1,14 @@
 const mongoose = require('mongoose');
 
 const {
-  users
+  users,
+  categories
 } = require("./schema.js");
 
 const db = {};
 
 db.users = mongoose.model("users", users);
+db.categories = mongoose.model("categories", categories);
 
 db.load = async (app) => {
 
@@ -16,6 +18,7 @@ db.load = async (app) => {
       {
         useNewUrlParser: true,  
         dbName,
+        poolSize: 2,
         useUnifiedTopology: true,
         autoIndex: app.ini.mongodb.autoIndex == true
       }

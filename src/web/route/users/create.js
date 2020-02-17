@@ -4,9 +4,11 @@ module.exports = async (req, res, next) => {
    const app = req.app.get('app')();
    const { usersManager } = app.managers;
 
-   const newUser = req.query.body;
+   const { body } = req.body;
 
-   const results = await usersManager.createUser(newUser);
+   const results = await usersManager.createUser(body);
    
+   console.debug(`results create user: ${results}`);
+
    return res.send(results);
 }
