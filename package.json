@@ -1,8 +1,8 @@
 {
-  "name": "freshfood-server",
+  "name": "porfolio-server",
   "version": "1.0.0",
   "description": "",
-  "main": "freshfood-server-dev.js",
+  "main": "porfolio-server-dev.js",
   "dependencies": {
     "bcrypt": "^3.0.8",
     "body-parser": "^1.19.0",
@@ -14,7 +14,9 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "staging": "node portfolio-server-staging.js",
+    "start": "node porfolio-server-dev.js"
   },
   "author": "",
   "license": "ISC"

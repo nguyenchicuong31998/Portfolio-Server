@@ -47,4 +47,23 @@ schema.categories = new mongoose.Schema(
   }
 ) 
 
+
+schema.configs = new mongoose.Schema(
+   {
+      name:{
+         type: String,
+         minlength: 1,
+         unique: true
+      },
+      value:{
+         type: Mixed
+      }
+   },
+   {
+      collection: 'configs'
+   }
+)
+
 module.exports = schema;
+
+

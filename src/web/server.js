@@ -36,7 +36,7 @@ $.load = async appInstance => {
 
   managers = appInstance;
 
-  const HOST = appInstance.ini.server.host;
+  const HOST = process.env.HOST || appInstance.ini.server.host;
   const PORT = process.env.PORT || appInstance.ini.server.port;
 
   app.web = appInstance;

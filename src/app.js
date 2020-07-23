@@ -16,12 +16,10 @@ $.load = function (iniFile) {
      .then(managers.load)
      .then(utils.load)
      .then(webServer.load)
-   //   .catch((e) => {
-   //       console.error(e);
-   //       process.exit();
-   //   })
-    //  .then(webServer.load);
+     .catch((e) => {
+         console.error(e);
+         process.exit();
+     })
 }
-
 
 module.exports = $;

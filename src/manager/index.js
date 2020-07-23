@@ -5,7 +5,8 @@ module.exports = $;
 
 function buildManagers(app){
     return {
-       usersManager: new (require('./users-manager'))(app)
+       usersManager: new (require('./users-manager'))(app),
+       categoriesManager: new (require('./categories-manager'))(app),
     };
 }
 

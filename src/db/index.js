@@ -2,13 +2,15 @@ const mongoose = require('mongoose');
 
 const {
   users,
-  categories
+  categories,
+  configs
 } = require("./schema.js");
 
 const db = {};
 
 db.users = mongoose.model("users", users);
 db.categories = mongoose.model("categories", categories);
+db.configs = mongoose.model("configs", configs);
 
 db.load = async (app) => {
 
