@@ -16,7 +16,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "staging": "node portfolio-server-staging.js",
-    "start": "node portfolio-server-dev.js"
+    "start": "node portfolio-server-dev.js",
+    "heroku-postbuild": "node build --prod"
   },
   "author": "",
   "license": "ISC"
