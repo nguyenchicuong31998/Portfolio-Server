@@ -44,7 +44,7 @@ $.load = async appInstance => {
   return new Promise(function(resolve, reject) {
     
     let server = http.createServer(app);
-    server.listen(PORT, HOST, (err) => {
+    server.listen(process.env.PORT, (err) => {
 
       if(err){
          return reject(err);
