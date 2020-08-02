@@ -4,6 +4,5 @@ module.exports = async (req, res, next) => {
     const { categoriesManager } = app.managers;
 
     const categories = await categoriesManager.get();
-
     return res.send(categories);
 }

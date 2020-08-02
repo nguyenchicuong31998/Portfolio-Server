@@ -4,9 +4,9 @@ module.exports = async (req, res, next) => {
   const { categoriesManager } = app.managers;
 
   const { categoryId }  = req.params;
-  // const body = req.body;
-  console.log(`categoryId`);
-  // const updateCategory = await categoriesManager.updateCategory(categoryId, body);
+  const body = req.body;
+
+  const updatedCategory = await categoriesManager.updateCategory(categoryId, body);
  
-  // return res.json(updateCategory);
+  return res.send(updatedCategory);
 }

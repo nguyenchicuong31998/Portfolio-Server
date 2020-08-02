@@ -16,7 +16,6 @@ categoriesManager.prototype.get = async function(){
 
 categoriesManager.prototype.getCategoryById = async function(categoryId){
   console.debug(`categoriesManager.getCategoryById(), categoryId: ${categoryId}`);
-  
   return await db.categories.findOne({ _id: categoryId });
 }
 
@@ -32,13 +31,22 @@ categoriesManager.prototype.createCategory = async function(category){
   const categoryExisted = await this.getCategoryByName(category.category_name);
   
   if(categoryExisted && categoryExisted.length > 0){
-     return new ResultsCode("Category_Invalid", "Category does not existed");
+     return new ResultsCode("Category_Invalid", "Category does not exist");
   }
 
   return await new db.categories(category).save();
 }
 
 categoriesManager.prototype.updateCategory = async function(categoryId, body){
-  console.debug(`categoriesManager.updateCategory(), categoryId: ${categoryId}, newCategory: ${JSON.stringify(body)}`);
+  console.debug(`categoriesManager.updateCategory(), categoryId: ${categoryId}, body: ${JSON.stringify(body)}`);
 
+  const category = await this.getCategoryById({_id: categoryId});
+
+  if(!category){
+    return new ResultsCode("Category_Invalid","Category does not exist");
+  }
+  
+  delete body._id;
+
+  return db.categories.findOneAndUpdate({_id: categoryId}, body, {  new: true });;
 }

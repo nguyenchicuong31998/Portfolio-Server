@@ -12,13 +12,13 @@ router.put('/users/:userId', require('./users/update'));
 router.get('/categories', require('./categories/get'));
 router.post('/categories', require('./categories/create'));
 router.get('/categories/:categoryId', require('./categories/find-by-categoryId'));
-router.put(`/categories/:categoryId`, require('./categories/update.js'));
+router.put('/categories/:categoryId', require('./categories/update.js'));
 
 
 
-router.get('/', (req, res) =>{
-   res.send("Home");
-})
+// router.get('/', (req, res) =>{
+//    res.send("Home");
+// })
 
 
 module.exports = router;
