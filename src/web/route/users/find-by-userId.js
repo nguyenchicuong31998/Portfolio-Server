@@ -6,7 +6,7 @@ module.exports = async (req, res, next) => {
 
 
     const { userId } = req.params;
-
+    console.debug(`vao userId ${userId}`);
     const user = await usersManager.getUserById(userId);
 
     return res.json(user);

@@ -38,12 +38,17 @@ schema.categories = new mongoose.Schema(
         type: String,
         require: true,
      },
-     category_dscpn:{
+     category_desc:{
         type: String
+     },
+     language_code:{
+        type: String,
+        default: Enum.LanguageCode.English
      }
   },
   {
-     collection: 'categories'
+     collection: 'categories',
+     timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' }
   }
 ) 
 

@@ -7,3 +7,8 @@ Enum.Permission = {
    isAdmin: 'admin',
    isMember: 'member'
 }
+
+Enum.LanguageCode = {
+   Vietnamese: 'vi',
+   English: 'en'
+}

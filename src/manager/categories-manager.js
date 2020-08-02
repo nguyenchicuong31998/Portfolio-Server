@@ -38,7 +38,7 @@ categoriesManager.prototype.createCategory = async function(category){
   return await new db.categories(category).save();
 }
 
-categoriesManager.prototype.updateCategory = async function(categoryId,newCategory){
-  console.debug(`categoriesManager.updateCategory(), categoryId: ${categoryId}, newCategory: ${JSON.stringify(newCategory)}`);
+categoriesManager.prototype.updateCategory = async function(categoryId, body){
+  console.debug(`categoriesManager.updateCategory(), categoryId: ${categoryId}, newCategory: ${JSON.stringify(body)}`);
 
 }

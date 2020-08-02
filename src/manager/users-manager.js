@@ -9,6 +9,7 @@ const usersManager = function(app){
 module.exports = usersManager;
 
 usersManager.prototype.getUserById = async function(userId){
+    console.debug(`usersManager.create(), newUser:${userId}`);
     return await db.users.findById({ _id:userId });
 }
 
