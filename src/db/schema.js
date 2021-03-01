@@ -28,9 +28,56 @@ schema.users = new mongoose.Schema(
       }
   },
   {
-    collection: 'users'
+    collection: 'users',
+    timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' }
   }
 )
+
+
+schema.experiences = new mongoose.Schema(
+   {
+      company_name:{
+         type: String
+      },
+      date: {
+         type: Date
+      },
+      project_name: {
+         type: String
+      },
+      position: {
+         type: String
+      },
+      description: {
+         type: String
+      },
+      responsibilities: {
+         type: Array
+      },
+      Accomplishments: {
+         type: Array
+      },
+      technologies: {
+         type: Mixed
+      },
+      website: {
+         type: String
+      }
+   },
+   {
+      collection: 'experience',
+      timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt'}
+   }
+)
+
+// schema.locations = new mongoose.Schema(
+//    {
+      
+//    },
+//    {
+//       collection: 'locations'
+//    }
+// )
 
 schema.categories = new mongoose.Schema(
   {
@@ -41,9 +88,19 @@ schema.categories = new mongoose.Schema(
      category_desc:{
         type: String
      },
+     href:{
+         type: String
+     },
      language_code:{
         type: String,
         default: Enum.LanguageCode.English
+     },
+     view_priority: {
+         type: Number
+     },
+     status: {
+        type: String,
+        default: Enum.CategoryStatuses.ACTIVE
      }
   },
   {
@@ -65,7 +122,8 @@ schema.configs = new mongoose.Schema(
       }
    },
    {
-      collection: 'configs'
+      collection: 'configs',
+      timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' }
    }
 )
 

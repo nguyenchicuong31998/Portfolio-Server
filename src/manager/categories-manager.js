@@ -1,5 +1,7 @@
 const db = require('../db');
 const ResultsCode = require('../lib/results-code.js');
+const utils = require('../lib/utils.js');
+const Enums = require('../db/enum.js');
 
 
 const categoriesManager = function(app){
@@ -8,9 +10,35 @@ const categoriesManager = function(app){
 module.exports = categoriesManager;
 
 
-categoriesManager.prototype.get = async function(){
-  console.debug(`categoriesManager.get()`);
-  return await db.categories.find({});
+categoriesManager.prototype.get = async function(language_code){
+  console.debug(`categoriesManager.get(), language_code: ${language_code}`);
+  return await db.categories.find({ language_code: language_code, status: Enums.CategoryStatuses.ACTIVE }).sort({ view_priority: 1});
+}
+
+categoriesManager.prototype.find = async function(filter){
+  console.debug(`categoriesManager.find(), filter: ${JSON.stringify(filter)}`);
+
+  const hightFilter = {};
+  const lowFilter = {};
+
+  filter.language_code && (hightFilter.language_code = filter.language_code);
+  filter.id && (hightFilter._id = utils.asObjectId(filter.id));
+  filter.statuses && (lowFilter.status = { $in: [].concat(filter.statuses) } )
+
+  let searchStreams = db.categories.aggregate([
+    {
+        $match: hightFilter
+    },
+    {
+        $match: lowFilter 
+    }
+  ])
+
+  searchStreams.sort({
+    view_priority: 1
+  })
+
+  return searchStreams.exec();
 }
 
 

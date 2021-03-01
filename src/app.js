@@ -3,7 +3,7 @@ const configs = require('../configs/index.js');
 const managers = require('./manager/index.js');
 const utils = require('./lib/utils.js');
 const db = require('./db');
-let app = {};
+var app = {};
 const $ = {};
 
 $.load = function (iniFile) {

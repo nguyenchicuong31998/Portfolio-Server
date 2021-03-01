@@ -12,3 +12,9 @@ Enum.LanguageCode = {
    Vietnamese: 'vi',
    English: 'en'
 }
+
+
+Enum.CategoryStatuses = {
+   ACTIVE: 'active',
+   INACTIVE: 'inactive'
+}

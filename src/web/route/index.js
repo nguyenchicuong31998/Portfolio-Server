@@ -10,9 +10,11 @@ router.put('/users/:userId', require('./users/update'));
 
 
 router.get('/categories', require('./categories/get'));
+router.get('/categories/search', require('./categories/search'));
 router.post('/categories', require('./categories/create'));
 router.get('/categories/:categoryId', require('./categories/find-by-categoryId'));
 router.put('/categories/:categoryId', require('./categories/update.js'));
+// router.delete('/categories/:categoryId', require('./categories/delete.js'));
 
 
 
