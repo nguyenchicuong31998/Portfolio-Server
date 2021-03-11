@@ -18,3 +18,8 @@ Enum.CategoryStatuses = {
    ACTIVE: 'active',
    INACTIVE: 'inactive'
 }
+
+Enum.ExperienceStatuses = {
+   ACTIVE: 'active',
+   INACTIVE: 'inactive'
+}

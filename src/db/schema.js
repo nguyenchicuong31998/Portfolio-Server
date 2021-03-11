@@ -34,34 +34,75 @@ schema.users = new mongoose.Schema(
 )
 
 
-schema.experiences = new mongoose.Schema(
+schema.experience = new mongoose.Schema(
    {
       company_name:{
          type: String
       },
+      company_date: {
+         type: String
+      },
+      project: {
+         title: {
+            type: String
+         },
+         value: {
+            type: String
+         }
+      },
+      position: {
+         title: {
+            type: String
+         },
+         value: {
+            type: String
+         }
+      },
+      description: {
+         title: {
+            type: String
+         },
+         value: {
+            type: String
+         }
+      },
+      responsibilities: {
+         title: {
+            type: String
+         },
+         value: {
+            type: Array
+         },
+      },
+      accomplishments: {
+         title: {
+            type: String
+         },
+         value: {
+            type: Array
+         },
+      },
+      technologies: {
+         type: String
+      },
+      website: {
+         title: {
+            type: String
+         },
+         value: {
+            type: String
+         }
+      },
       date: {
          type: Date
       },
-      project_name: {
-         type: String
+      status: {
+         type: String,
+         default: Enum.ExperienceStatuses.INACTIVE
       },
-      position: {
-         type: String
-      },
-      description: {
-         type: String
-      },
-      responsibilities: {
-         type: Array
-      },
-      Accomplishments: {
-         type: Array
-      },
-      technologies: {
-         type: Mixed
-      },
-      website: {
-         type: String
+      language_code: {
+         type: String,
+         default: Enum.LanguageCode.English
       }
    },
    {

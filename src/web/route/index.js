@@ -14,10 +14,10 @@ router.get('/categories/search', require('./categories/search'));
 router.post('/categories', require('./categories/create'));
 router.get('/categories/:categoryId', require('./categories/find-by-categoryId'));
 router.put('/categories/:categoryId', require('./categories/update.js'));
-// router.delete('/categories/:categoryId', require('./categories/delete.js'));
 
 
-
+router.get('/experience', require('./experience/get'));
+router.post('/experience', require('./experience/create'));
 // router.get('/', (req, res) =>{
 //    res.send("Home");
 // })

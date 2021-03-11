@@ -22,8 +22,8 @@ categoriesManager.prototype.find = async function(filter){
   const lowFilter = {};
 
   filter.language_code && (hightFilter.language_code = filter.language_code);
-  filter.id && (hightFilter._id = utils.asObjectId(filter.id));
-  filter.statuses && (lowFilter.status = { $in: [].concat(filter.statuses) } )
+  filter.ids && (hightFilter._id = { $in: utils.asObjectId(filter.ids)});
+  filter.statuses && (lowFilter.status = { $in: [].concat(filter.statuses) });
 
   let searchStreams = db.categories.aggregate([
     {
@@ -62,19 +62,47 @@ categoriesManager.prototype.createCategory = async function(category){
      return new ResultsCode("Category_Invalid", "Category does not exist");
   }
 
-  return await new db.categories(category).save();
+  const isSupportLanguage = await utils.checkLanguage(JSON.parse(this.app.ini.support.language), category.language_code);
+
+  if(!isSupportLanguage){
+      return new ResultsCode("Category_Invalid", "Category does not support this language");
+  } 
+  
+  const newCategory = {
+    language_code: category.language_code || "en",
+    category_name: category.category_name,
+    category_desc: category.category_desc,
+    view_priority: category.view_priority,
+    href: category.href,
+    status: Enums.CategoryStatuses.INACTIVE
+  }
+
+  return await new db.categories(newCategory).save();
 }
 
 categoriesManager.prototype.updateCategory = async function(categoryId, body){
   console.debug(`categoriesManager.updateCategory(), categoryId: ${categoryId}, body: ${JSON.stringify(body)}`);
+
+  const isObjectId = utils.isObjectId(categoryId);
+
+  if(!isObjectId){
+    return new ResultsCode("Object_Invalid","ObjectId does not invalid");
+  }
 
   const category = await this.getCategoryById({_id: categoryId});
 
   if(!category){
     return new ResultsCode("Category_Invalid","Category does not exist");
   }
+
+  const isSupportLanguage = await utils.checkLanguage(JSON.parse(this.app.ini.support.language), body.language_code);
+
+  if(!isSupportLanguage){
+      return new ResultsCode("Category_Invalid", "Category does not support this language");
+  } 
   
   delete body._id;
 
   return db.categories.findOneAndUpdate({_id: categoryId}, body, {  new: true });;
 }
+

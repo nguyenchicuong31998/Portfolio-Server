@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const {
   users,
   categories,
-  configs
+  configs,
+  experience
 } = require("./schema.js");
 
 const db = {};
@@ -11,6 +12,7 @@ const db = {};
 db.users = mongoose.model("users", users);
 db.categories = mongoose.model("categories", categories);
 db.configs = mongoose.model("configs", configs);
+db.experience = mongoose.model("experience", experience);
 
 db.load = async (app) => {
 

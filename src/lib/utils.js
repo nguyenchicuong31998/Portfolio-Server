@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const crypto = require('crypto'); 
 const mongoose = require('mongoose');
+const ResultsCode = require('./results-code.js');
 const $ = {};
 module.exports = $
 var app;
@@ -34,7 +35,22 @@ $.checkLanguage = async function(supportLanguage, value){
   return false;
 }
 
-$.asObjectId = function(value){
+$.asObjectId = function(values){
+  if(Array.isArray(values)){
+    values  = values.map(item => {
+      item = mongoose.Types.ObjectId(item);
+      return item;
+    })
+    return values;
+  }else{
+     return [mongoose.Types.ObjectId(values)];
+  }
+}
+
+$.isObjectId = function(value){
+  if(!mongoose.Types.ObjectId.isValid(value)){
+     return false;
+  }
   return mongoose.Types.ObjectId(value);
 }
 

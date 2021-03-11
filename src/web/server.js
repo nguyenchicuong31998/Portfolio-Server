@@ -22,11 +22,15 @@ const $ = {};
 //   console.log("vaoo user", users);
 //   next();
 // });
+
+const URL_ACCEPT_SERVER = "http://localhost:8080";
+// const URL_ACCEPT_SERVER = "https://app-personal-profile.herokuapp.com";
+
 app.use('/public',express.static(path.join(__dirname + '../../../assets')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Origin", URL_ACCEPT_SERVER);
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
